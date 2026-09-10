@@ -4,7 +4,23 @@ const dotenv = require("dotenv");
 
 const connectDB = require("./config/db");
 
-const authRoutes = require("./routes/authRoutes");
+const authRoutes =
+    require("./routes/authRoutes");
+
+const studentRoutes =
+    require("./routes/studentRoutes");
+
+const recruiterRoutes =
+    require("./routes/recruiterRoutes");
+
+const jobRoutes =
+    require("./routes/jobRoutes");
+
+const applicationRoutes =
+    require("./routes/applicationRoutes");
+
+const adminRoutes =
+    require("./routes/adminRoutes");
 
 dotenv.config();
 
@@ -21,9 +37,38 @@ app.get("/", (req, res) => {
     });
 });
 
-app.use("/api/auth", authRoutes);
+app.use(
+    "/api/auth",
+    authRoutes
+);
 
-const PORT = process.env.PORT || 5000;
+app.use(
+    "/api/students",
+    studentRoutes
+);
+
+app.use(
+    "/api/recruiters",
+    recruiterRoutes
+);
+
+app.use(
+    "/api/jobs",
+    jobRoutes
+);
+
+app.use(
+    "/api/applications",
+    applicationRoutes
+);
+
+app.use(
+    "/api/admin",
+    adminRoutes
+);
+
+const PORT =
+    process.env.PORT || 5000;
 
 app.listen(PORT, () => {
     console.log(

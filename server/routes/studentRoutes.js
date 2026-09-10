@@ -2,7 +2,8 @@ const express = require("express");
 
 const {
     getProfile,
-    updateProfile
+    updateProfile,
+    getRecommendedJobs
 } = require("../controllers/studentController");
 
 const {
@@ -14,6 +15,7 @@ const authorize =
 
 const router = express.Router();
 
+
 router.get(
     "/profile",
     protect,
@@ -21,11 +23,21 @@ router.get(
     getProfile
 );
 
+
 router.put(
     "/profile",
     protect,
     authorize("student"),
     updateProfile
 );
+
+
+router.get(
+    "/recommended-jobs",
+    protect,
+    authorize("student"),
+    getRecommendedJobs
+);
+
 
 module.exports = router;
