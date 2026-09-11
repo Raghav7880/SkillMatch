@@ -22,6 +22,11 @@ const applicationRoutes =
 const adminRoutes =
     require("./routes/adminRoutes");
 
+const {
+    notFound,
+    errorHandler
+} = require("./middleware/errorMiddleware");
+
 dotenv.config();
 
 connectDB();
@@ -66,6 +71,10 @@ app.use(
     "/api/admin",
     adminRoutes
 );
+
+// Error handling middleware
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT =
     process.env.PORT || 5000;
